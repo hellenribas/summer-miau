@@ -1,4 +1,4 @@
-export const MockData = [
+const MockData = [
   {
     "id": "3ih",
     "url": "https://cdn2.thecatapi.com/images/3ih.jpg",
@@ -30,3 +30,5 @@ export const MockData = [
     "height": 768
   }
 ]
+
+export default MockData;
