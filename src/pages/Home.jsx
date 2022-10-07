@@ -15,35 +15,21 @@ export class Home extends Component {
   componentDidMount = () => {
     const { dispatch } = this.props;
     dispatch(getRequest())
-    const second = 1000;
-    setTimeout(() => {
-      const timerUpdate = setInterval(() => {
-        this.setState((prev) => {
-          if (prev.timer === 1) {
-          clearInterval(timerUpdate);  
-          }
-          return { timer: prev.timer -1 }
-        })
-      }, second)
-    }, 2000)
   }
   
   handleBtn = () => {
-    const { dispatch } = this.props;
-    this.setState((prev) => ({clicks: prev.clicks + 1 }), () => {
-      const { clicks } = this.state;
-      dispatch(getClicks(clicks))})
+
   }
 
   render() {
     const { responseApi } = this.props;
-    const { timer, clicks } = this.state;
+
     return (
       <div>
         <Header />
-        <p> { timer } </p>
-        <p> { clicks }</p>
-        { timer === 0 ? <Result /> : (
+        {/* <p> { timer } </p>
+        <p> { clicks }</p> */}
+        { (
           responseApi.length > 0 && (
           <button
             type="button"
@@ -64,8 +50,6 @@ export class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  responseApi: state.cats.api,
-});
 
-export default connect(mapStateToProps)(Home);
+
+export default connect()(Home);
