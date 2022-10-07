@@ -13,22 +13,28 @@ export class Home extends Component {
     }
 
   componentDidMount = () => {
-    const { dispatch } = this.props;
-    dispatch(getRequest())
+    const { pegaAPI } = this.props;
+    pegaAPI();
   }
   
   handleBtn = () => {
-
+    const { clickGlobal } = this.props;
+    this.setState((prev) => ({ clicks: prev.clicks + 1 }), () => {
+      const { clicks } = this.state;
+      clickGlobal(clicks)} )
+    
   }
 
   render() {
-    const { responseApi } = this.props;
+    const { responseApi, getClickGlobal } = this.props;
+    const { clicks } = this.state;
 
     return (
       <div>
         <Header />
-        {/* <p> { timer } </p>
-        <p> { clicks }</p> */}
+        {/* <p> { timer } </p> */}
+        <p> { clicks }</p>
+        <p> { getClickGlobal } </p>
         { (
           responseApi.length > 0 && (
           <button
@@ -50,6 +56,14 @@ export class Home extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  responseApi: state.cats.api,
+  getClickGlobal: state.cats.clicks,
+});
 
+const mapDispatchToProps = (dispatch) => ({
+  pegaAPI: () => dispatch(getRequest()),
+  clickGlobal: (payload) => dispatch(getClicks(payload)),
+});
 
-export default connect()(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

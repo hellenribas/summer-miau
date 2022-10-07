@@ -21,9 +21,8 @@ export const getRequest = () => {
       const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=1');
       const result = await response.json();
       dispatch(responseApi(result));
-      dispatch(finalRequest());
-    } catch (e) {
-      throw new Error(e);
+    } catch (error) {
+      throw new Error(error);
     }
   }
 }
