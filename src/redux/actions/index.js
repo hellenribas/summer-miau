@@ -4,20 +4,21 @@ export const INICIAL_REQ = 'INICIAL_REQ';
 export const FINAL_REQ = 'FINAL_REQ';
 export const FAIL_REQ = 'FAIL_REQ';
 export const GET_API = 'GET_API';
-// const newAction = (payload) => ({ type: '', payload });
+export const CLICKS = 'CLICKS';
 
 
 export const getEmail = (payload) => ({ type: GET_EMAIL, payload });
 export const inicialRequest = () => ({ type: INICIAL_REQ });
 export const finalRequest = () => ({ type: FINAL_REQ });
 export const responseApi = (payload) => ({ type: GET_API, payload })
-// export const failApi = (erro) => ({ type: FAIL_REQ , erro })
+export const getClicks = (payload) => ({ type: CLICKS, payload });
+
 
 export const getRequest = () => {
   return async (dispatch) => {
     try {
       dispatch(inicialRequest());
-      const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=5');
+      const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=1');
       const result = await response.json();
       dispatch(responseApi(result));
       dispatch(finalRequest());

@@ -1,8 +1,9 @@
-import { INICIAL_REQ, GET_API, FINAL_REQ } from "../actions";
+import { INICIAL_REQ, GET_API, FINAL_REQ, CLICKS } from "../actions";
 
 const INITIAL_STATE = {
   api: [],
   loading: false,
+  clicks: 0,
 };
 
 function cats(state = INITIAL_STATE, action) {
@@ -22,6 +23,11 @@ function cats(state = INITIAL_STATE, action) {
       ...state,
       loading: false,
     };
+    case CLICKS:
+      return {
+        ...state,
+        clicks: action.payload,
+      };
   default:
     return state;
   }
